@@ -49,6 +49,7 @@ article, aside, canvas, details, figcaption, figure, footer, header, hgroup, men
   padding: 25px;
   text-align: center;
   text-transform: uppercase;
+  min-width: 100%;
   max-width: 100%;
 }
 /* ====================== Navigation ====================== */
@@ -76,12 +77,13 @@ nav h1 a {
     background-color: #eee;
     font-size: 17px;
     margin: 0;
-    width: calc(50% - 80px);
+    width: 100%;
 }
 
 /* Display list items side by side */
 #breadcrumb li {
     display: inline;
+    font-size: 1em;
 }
 
 /* Add a slash symbol (/) before/behind each list item */
@@ -95,6 +97,7 @@ nav h1 a {
 #breadcrumb li a {
     color: #0275d8;
     text-decoration: none;
+    font-size: 1em;
 }
 
 /* Add a color on mouse-over */
@@ -203,6 +206,9 @@ nav h1 a {
 }
 
 /* ====================== Restaurant Details ====================== */
+.inside {
+  width: 100%;
+}
 .inside header {
   position: fixed;
   top: 0;
@@ -210,12 +216,14 @@ nav h1 a {
   z-index: 1000;
 }
 .inside #map-container {
-  background: blue none repeat scroll 0 0;
-  height: 87%;
-  position: fixed;
+  background: #eeeeee none repeat scroll 0 0;
+  height: 90%;
+  position: absolute;
   right: 0;
-  top: 80px;
+  top: 120px;
   width: 50%;
+  padding-right: 2%;
+  padding-left: 2%;
 }
 .inside #map {
   background-color: #ccc;
@@ -225,7 +233,12 @@ nav h1 a {
 .inside #footer {
   bottom: 0;
   position: absolute;
-  width: 50%;
+  width: 100%;
+}
+#restaurant-info-wrapper{
+  max-width: 100%;
+  display: flex;
+  flex-wrap: wrap;
 }
 #restaurant-name {
   color: #f18200;
@@ -275,6 +288,7 @@ nav h1 a {
 #reviews-list {
   margin: 0;
   padding: 0;
+  max-width: 90%;
 }
 #reviews-list li {
   background-color: #fff;
@@ -283,13 +297,64 @@ nav h1 a {
   list-style-type: none;
   margin: 0 0 30px;
   overflow: hidden;
-  padding: 0 20px 20px;
+  padding: 0 0 0;
   position: relative;
-  width: 85%;
+  width: 90%;
+  border-top-left-radius: 30px;
+  border-bottom-right-radius: 30px;
 }
 #reviews-list li p {
   margin: 0 0 10px;
 }
 #restaurant-hours td {
   color: #666;
+  width: 25%;
+}
+
+#restaurant-hours {
+  max-width: 90%;
+  border-collapse: collapse;
+}
+tr:nth-child(even) {
+  background-color: #fdf6f4
+}
+.author {
+  font-size:2em;
+  color: white;
+  background: black;
+  min-width: 90%;
+  padding-left: 3%;
+  margin: 0;
+}
+.review-list-item .author{
+width: 100%;
+}
+.comments {
+  border-bottom-right-radius: 10px;
+  max-width: 90%;
+  margin-left: 2% !important;
+  color: #4a4a4a;
+  margin-right: 2% !important;
+  padding-bottom: 2%;
+}
+.postedAt {
+  float: right;
+  text-align: right;
+  margin-top: -40px !important;
+  color: #d8d8d8;
+  padding-right: 1%;
+}
+.rating {
+  background: #ef940dee;
+  color: white;
+  font-size: 1.5em;
+  padding-left: 1%;
+  padding-right: 1%;
+  max-width: 15%;
+  margin-left: 2% !important;
+  border-radius: 6px;
+}
+body {
+  overflow-x:hidden;
+  width:100%;
 }
