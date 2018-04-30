@@ -33,7 +33,7 @@ h1, h2, h3, h4, h5, h6 {
   font-family: Arial, Helvetica, sans-serif;
   margin: 0 0 20px;
 }
-article, aside, canvas, details, figcaption, figure, footer, header, hgroup, menu, nav, section {
+article, aside, canvas, details, figcaption, figure, hgroup, menu, section {
 	display: block;
 }
 #maincontent {
@@ -49,8 +49,6 @@ article, aside, canvas, details, figcaption, figure, footer, header, hgroup, men
   padding: 25px;
   text-align: center;
   text-transform: uppercase;
-  min-width: 100%;
-  max-width: 100%;
 }
 /* ====================== Navigation ====================== */
 nav {
@@ -233,7 +231,6 @@ nav h1 a {
 .inside #footer {
   bottom: 0;
   position: absolute;
-  width: 100%;
 }
 #restaurant-info-wrapper{
   max-width: 100%;
@@ -357,4 +354,269 @@ width: 100%;
 body {
   overflow-x:hidden;
   width:100%;
+}
+/* ====================== START THEM MEDIA QUERIES ====================== */
+
+
+/* ====================== First up: smallest freaking screens one can find in that emulation mode! Tested on Iphone 5/SE; Galaxy s3 and S5, LG Optimus and other ====================== */
+
+
+@media (max-width: 400px) {
+  .filter-options{
+    display: table-cell;
+    text-align: center;
+  }
+  #map {
+    height: 300px;
+  }
+  #restaurants-list li {
+    max-width:100%;
+  }
+  #restaurants-list .restaurant-img {
+    min-height: 200px;
+    min-width: 200px;
+  }
+
+}
+
+/* ====================== Then: second resolution, also covering most phones when rotated in landscape mode ====================== */
+
+@media  (min-width: 640px) {
+  .filter-options{
+    text-align: center;
+  }
+
+  #restaurants-list li {
+    background-color: #fff;
+    border: 2px solid #ccc;
+    font-family: Arial,sans-serif;
+    margin: 15px;
+    min-height: 410px;
+    height: 420px;
+    padding: 0 10px 25px;
+    text-align: left;
+    max-width: 37%;
+  }
+  #restaurants-list li h1 {
+    font-size: 15pt;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+
+  }
+
+  #restaurants-list p {
+    margin: 0;
+    font-size: 14pt;
+
+  }
+  #footer {
+    width: -webkit-fill-available;
+  }
+  .inside #footer {
+    bottom: 0;
+    position: unset;
+    font-size: 1.1em;
+  }
+
+  .inside #map-container {
+    height: 25%;
+    width: 100%;
+  }
+  #map {
+    zoom: 240%;
+  }
+
+  #restaurant-container{
+    border-bottom: unset;
+    width: -webkit-fill-available;
+    border-top: unset;
+    position: absolute;
+    top: 25%
+  }
+
+  #restaurant-name {
+    text-align: center;
+    font-size: 3.2em;
+  }
+  #restaurant-img {
+    width: 100%;
+  }
+  #restaurant-address {
+    font-size: 3.5em;
+  }
+  #restaurant-hours td {
+    font-size: 2.8em;
+  }
+  #restaurant-hours tr {
+    height: 110px;
+  }
+  #restaurant-hours {
+    max-height: 35%;
+  }
+  #restaurant-cuisine {
+    font-size: 2.8em;
+    width: 100%;
+  }
+  #reviews-container {
+    width: -webkit-fill-available;
+    padding: 345% 5% 10%;
+  }
+  #reviews-list {
+    padding-left: 5%;
+  }
+  #reviews-list li {
+    padding: 0 10% 0 0;
+  }
+
+  .rating {
+    font-size: 2.2em;
+    max-width: 22%;
+  }
+  .comments {
+    max-width: 100%;
+    font-size: 1.8em;
+  }
+  .author {
+    font-size: 3.2em;
+    padding-left: 10%;
+  }
+
+  .postedAt {
+    margin-top: -70px !important;
+    font-size: 2.8em;
+  }
+
+  #reviews-container h2 {
+    text-align: center;
+  }
+
+  #breadcrumb {
+    font-size: 2.5em;
+  }
+
+  nav h1 a {
+    font-size: 2.2em;
+  }
+
+  /*#footer {*/
+    /*margin: 0;*/
+  /*}*/
+
+
+}
+/* ====================== Tablets and such (larger screens in general) ====================== */
+
+@media  (min-width: 850px) {
+  .filter-options{
+    text-align: center;
+  }
+
+  #restaurants-list li {
+    background-color: #fff;
+    border: 2px solid #ccc;
+    font-family: Arial,sans-serif;
+    margin: 15px;
+    min-height: 410px;
+    height: 440px;
+    padding: 0 10px 25px;
+    text-align: left;
+    max-width: 37%;
+  }
+
+  #restaurants-list li h1 {
+    font-size: 16pt;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+
+  }
+
+  #restaurants-list p {
+    margin: 0;
+    font-size: 15pt;
+
+  }
+  #footer {
+    text-align: left;
+    font-size: 1.8em;
+    margin: 0;
+  }
+}
+/* ====================== Minor breakpooint (to me at least) ====================== */
+
+@media  (min-width: 1100px) {
+  .filter-options{
+    text-align: center;
+  }
+
+  #restaurants-list li {
+    background-color: #fff;
+    border: 2px solid #ccc;
+    font-family: Arial,sans-serif;
+    margin: 15px;
+    min-height: 410px;
+    height: 12%;
+    padding: 0 10px 25px;
+    text-align: left;
+    max-width: 37%;
+  }
+
+  #restaurants-list li h1 {
+    font-size: 16pt;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+
+  }
+
+  #restaurants-list p {
+    margin: 0;
+    font-size: 15pt;
+
+  }
+  #footer {
+    text-align: left;
+    font-size: 1.4em;
+    padding-left: 6%;
+  }
+}
+/* ====================== Last one - XXXL screens live here; we swithc to 3 - a row layout and some larger fonts for the index page and the default layout for the
+reviews page ====================== */
+
+@media  (min-width: 1200px) {
+  .filter-options{
+    text-align: left;
+  }
+
+  #restaurants-list li {
+    background-color: #fff;
+    border: 2px solid #ccc;
+    font-family: Arial,sans-serif;
+    margin: 15px;
+    min-height: 410px;
+    height: 12%;
+    padding: 0 10px 25px;
+    text-align: left;
+    max-width: 28%;
+  }
+
+  #restaurants-list li h1 {
+    font-size: 17pt;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+
+  }
+
+  #restaurants-list p {
+    margin: 0;
+    font-size: 16pt;
+
+  }
+  #footer {
+    text-align: left;
+    font-size: 1.4em;
+    padding-left: 6%;
+  }
 }
