@@ -1,8 +1,20 @@
 let restaurants,
   neighborhoods,
-  cuisines
-var map
-var markers = []
+  cuisines;
+var map;
+var markers = [];
+
+    function _registerServiceWorker() {
+        if(!navigator.serviceWorker) return;
+
+        navigator.serviceWorker.register('sw.js').then(function() {
+            console.log('Registration worked!');
+        }).catch(function() {
+            console.log('Registration Fialed!');
+        });
+
+    }
+    _registerServiceWorker();
 
 /**
  * Fetch neighborhoods and cuisines as soon as the page is loaded.
@@ -10,7 +22,7 @@ var markers = []
 document.addEventListener('DOMContentLoaded', (event) => {
   fetchNeighborhoods();
   fetchCuisines();
-});
+})
 
 /**
  * Fetch all neighborhoods and set their HTML.
@@ -56,6 +68,8 @@ fetchCuisines = () => {
 /**
  * Set cuisines HTML.
  */
+
+
 fillCuisinesHTML = (cuisines = self.cuisines) => {
   const select = document.getElementById('cuisines-select');
 
@@ -66,7 +80,6 @@ fillCuisinesHTML = (cuisines = self.cuisines) => {
     select.append(option);
   });
 }
-
 /**
  * Initialize Google map, called from HTML.
  */
@@ -179,3 +192,9 @@ addMarkersToMap = (restaurants = self.restaurants) => {
     self.markers.push(marker);
   });
 }
+
+
+self.addEventListener('fetch', function(event) {
+    console.log(event);
+});
+
