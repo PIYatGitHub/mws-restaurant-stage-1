@@ -3,19 +3,49 @@ let restaurants,
   cuisines;
 var map;
 var markers = [];
+var updateNotificationHome = document.getElementById('updateNotificationHome');
 
     function _registerServiceWorker() {
         if(!navigator.serviceWorker) return;
 
-        navigator.serviceWorker.register('sw.js').then(function() {
-            console.log('Registration worked!');
+        navigator.serviceWorker.register('sw.js').then(function(reg) {
+          if(!navigator.serviceWorker.controller) return;
+          if (reg.waiting) {
+            _updateReady();
+            return;
+          }
+          if (reg.installing) {
+            _trackInstalling(reg.installing);
+            return;
+          }
+          reg.addEventListener('updatefound', function () {
+              _trackInstalling(reg.installing)
+          });
+          console.log('Registration worked!');
         }).catch(function() {
             console.log('Registration Fialed!');
         });
-
     }
     _registerServiceWorker();
+    _trackInstalling = function (worker) {
+        worker.addEventListener('statechange', function () {
+            if(worker.state == 'installed') {
+            _updateReady();
+            }
+        })
+    };
+    _updateReady = function () {
+        // todo show the toast message by this function
+        updateNotificationHome.style.display = 'block';
+    };
+    closeUpdateWindow = function () {
+        console.log ('closing the update window :(');
+        updateNotificationHome.style.display = 'none';
 
+    };
+    updateServiceWorker = function () {
+      // todo update the damn thing
+    };
 /**
  * Fetch neighborhoods and cuisines as soon as the page is loaded.
  */
@@ -192,9 +222,3 @@ addMarkersToMap = (restaurants = self.restaurants) => {
     self.markers.push(marker);
   });
 }
-
-
-self.addEventListener('fetch', function(event) {
-    console.log(event);
-});
-

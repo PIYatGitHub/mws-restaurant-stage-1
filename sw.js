@@ -1,4 +1,4 @@
-var staticCacheName = 'restaurant-reviews-static-v4';
+var staticCacheName = 'restaurant-reviews-static-v6';
 
 self.addEventListener('install', function (event) {
     var urlsToCache = [
@@ -28,7 +28,7 @@ self.addEventListener('activate', function (event) {
                 return cacheName.startsWith('restaurant-') &&
                     cacheName != staticCacheName;
             }).map(function (cacheName) {
-                return cache.delete(cacheName)
+                return caches.delete(cacheName)
             })
         );
 
