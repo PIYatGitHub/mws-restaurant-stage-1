@@ -1,4 +1,4 @@
-var staticCacheName = 'restaurant-reviews-static-v6';
+var staticCacheName = 'restaurant-reviews-static-v5';
 
 self.addEventListener('install', function (event) {
     var urlsToCache = [
@@ -52,4 +52,9 @@ self.addEventListener('fetch', function(event) {
             return fetch(event.request);
         })
      );
+});
+self.addEventListener('message', function (event) {
+    if(event.data.action === 'skipWaiting') {
+        self.skipWaiting();
+    }
 });

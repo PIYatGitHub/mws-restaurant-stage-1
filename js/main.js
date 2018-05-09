@@ -11,7 +11,7 @@ var updateNotificationHome = document.getElementById('updateNotificationHome');
         navigator.serviceWorker.register('sw.js').then(function(reg) {
           if(!navigator.serviceWorker.controller) return;
           if (reg.waiting) {
-            _updateReady();
+            _updateReady(reg.waiting);
             return;
           }
           if (reg.installing) {
@@ -25,27 +25,34 @@ var updateNotificationHome = document.getElementById('updateNotificationHome');
         }).catch(function() {
             console.log('Registration Fialed!');
         });
+        navigator.serviceWorker.addEventListener('controllerchange', function () {
+            window.location.reload();
+        })
     }
     _registerServiceWorker();
     _trackInstalling = function (worker) {
         worker.addEventListener('statechange', function () {
             if(worker.state == 'installed') {
-            _updateReady();
+            _updateReady(worker);
             }
         })
     };
-    _updateReady = function () {
-        // todo show the toast message by this function
+    _updateReady = function (worker) {
         updateNotificationHome.style.display = 'block';
+        document.getElementById('update').addEventListener('click',function () {
+            worker.postMessage({action:'skipWaiting'});
+        })
     };
     closeUpdateWindow = function () {
         console.log ('closing the update window :(');
         updateNotificationHome.style.display = 'none';
-
     };
-    updateServiceWorker = function () {
-      // todo update the damn thing
-    };
+    // updateServiceWorker = function (worker) {
+    //   // todo update the damn thing
+    //
+    //
+    //
+    // };
 /**
  * Fetch neighborhoods and cuisines as soon as the page is loaded.
  */
